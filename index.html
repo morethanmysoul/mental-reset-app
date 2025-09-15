@@ -1,388 +1,384 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>7-Day Mental Reset | Your Interactive Plan</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-                    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #FFF8F5; /* Light Peach Background */
-        }
-        .main-bg { background-color: #FFF8F5; }
-        .sidebar-bg { background-color: #FFFFFF; }
-        .primary-text { color: #5C3A2E; } /* Muted Brown */
-        .secondary-text { color: #856A5D; }
-        .accent-bg { background-color: #F5A68D; } /* Soft Peach */
-        .accent-text { color: #FFFFFF; }
-        .accent-hover:hover { background-color: #EFA085; }
-        .nav-link {
-            transition: all 0.3s ease;
-            border-left: 4px solid transparent;
-        }
-        .nav-link.active {
-            border-left-color: #F5A68D;
-            background-color: #FFF8F5;
-            color: #5C3A2E;
-        }
-        .nav-link:not(.active):hover {
-            background-color: #F9F9F9;
-            border-left-color: #EAEAEA;
-        }
-        .progress-bar-fill {
-            transition: width 0.5s ease-in-out;
-        }
-        .checklist-item {
-            transition: all 0.3s ease;
-        }
-        .checklist-item.completed {
-            text-decoration: line-through;
-            color: #AAAAAA;
-        }
-        .mood-selector .mood {
-            transition: all 0.2s ease;
-            filter: grayscale(80%);
-            opacity: 0.6;
-        }
-        .mood-selector .mood:hover, .mood-selector .mood.selected {
-            transform: scale(1.1);
-            filter: grayscale(0%);
-            opacity: 1;
-        }
-        .modal-image-container {
-            position: relative;
-            width: 100%;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
-            margin-bottom: 24px;
-            border-radius: 1rem; /* rounded-2xl */
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        .modal-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7-Day Mental Reset | Your Interactive Plan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFF8F5; /* Light Peach Background */
+        }
+        .main-bg { background-color: #FFF8F5; }
+        .sidebar-bg { background-color: #FFFFFF; }
+        .primary-text { color: #5C3A2E; } /* Muted Brown */
+        .secondary-text { color: #856A5D; }
+        .accent-bg { background-color: #F5A68D; } /* Soft Peach */
+        .accent-text { color: #FFFFFF; }
+        .accent-hover:hover { background-color: #EFA085; }
+        .nav-link {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        .nav-link.active {
+            border-left-color: #F5A68D;
+            background-color: #FFF8F5;
+            color: #5C3A2E;
+        }
+        .nav-link:not(.active):hover {
+            background-color: #F9F9F9;
+            border-left-color: #EAEAEA;
+        }
+        .progress-bar-fill {
+            transition: width 0.5s ease-in-out;
+        }
+        .checklist-item {
+            transition: all 0.3s ease;
+        }
+        .checklist-item.completed {
+            text-decoration: line-through;
+            color: #AAAAAA;
+        }
+        .mood-selector .mood {
+            transition: all 0.2s ease;
+            filter: grayscale(80%);
+            opacity: 0.6;
+        }
+        .mood-selector .mood:hover, .mood-selector .mood.selected {
+            transform: scale(1.1);
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        .cover-image-container {
+            max-width: 400px;
+            margin: 0 auto 24px auto;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body class="main-bg primary-text">
 
-    <div id="thankYouModal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-8 text-center transform transition-all duration-300 scale-95 opacity-0">
-                        <div class="modal-image-container">
-                <img src="https://raw.githubusercontent.com/morethanmysoul/mental-reset-app/refs/heads/main/Cover%20page%20image.png" alt="Cover image for 7-Day Mental Reset" class="modal-image">
-            </div>
-            <h1 class="text-3xl font-bold primary-text mb-3">Thank You for Your Purchase!</h1>
-            <p class="secondary-text mb-6">Your journey to a calmer, more organized home starts now. We're so excited to have you with us.</p>
-                        <a href="https://mtms.gumroad.com/l/srxsa" class="inline-block accent-bg accent-text font-bold py-3 px-8 rounded-full text-lg accent-hover shadow-lg mb-4">Download Your PDF Guide</a>
-            <p class="text-sm text-gray-400 mb-8">Your download should start automatically.</p>
-            <button id="startPlanBtn" class="bg-gray-100 text-gray-700 font-bold py-3 px-8 rounded-full hover:bg-gray-200 transition-colors">Start the Interactive Plan</button>
-        </div>
-    </div>
+    <div id="thankYouModal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-8 text-center transform transition-all duration-300 scale-95 opacity-0">
+            <h1 class="text-3xl font-bold primary-text mb-3">Thank You for Your Purchase!</h1>
+            <p class="secondary-text mb-6">Your journey to a calmer, more organized home starts now. We're so excited to have you with us.</p>
+            <a href="[PASTE_YOUR_GUMROAD_DOWNLOAD_LINK_HERE]" class="inline-block accent-bg accent-text font-bold py-3 px-8 rounded-full text-lg accent-hover shadow-lg mb-4">Download Your PDF Guide</a>
+            <p class="text-sm text-gray-400 mb-8">Your download should start automatically.</p>
+            <button id="startPlanBtn" class="bg-gray-100 text-gray-700 font-bold py-3 px-8 rounded-full hover:bg-gray-200 transition-colors">Start the Interactive Plan</button>
+        </div>
+    </div>
 
-    <div class="flex h-screen">
-        <aside id="sidebar" class="w-64 sidebar-bg shadow-md flex-shrink-0 hidden md:flex flex-col">
-            <div class="p-6 border-b">
-                <h2 class="text-2xl font-bold primary-text">Mental Reset</h2>
-                <p class="text-sm secondary-text">Your 7-Day Interactive Plan</p>
-            </div>
-            <nav id="day-navigation" class="flex-grow p-4 space-y-2">
-            </nav>
-            <div class="p-4 border-t">
-                <h3 class="font-semibold mb-2">Your Progress</h3>
-                <div class="w-full bg-gray-200 rounded-full h-4">
-                    <div id="progressBar" class="accent-bg h-4 rounded-full progress-bar-fill" style="width: 0%;"></div>
-                </div>
-                <p id="progressText" class="text-xs text-center mt-1 secondary-text">0% Complete</p>
-            </div>
-        </aside>
+    <div class="flex h-screen">
+        <aside id="sidebar" class="w-64 sidebar-bg shadow-md flex-shrink-0 hidden md:flex flex-col">
+            <div class="p-6 border-b">
+                <h2 class="text-2xl font-bold primary-text">Mental Reset</h2>
+                <p class="text-sm secondary-text">Your 7-Day Interactive Plan</p>
+            </div>
+            <nav id="day-navigation" class="flex-grow p-4 space-y-2">
+            </nav>
+            <div class="p-4 border-t">
+                <h3 class="font-semibold mb-2">Your Progress</h3>
+                <div class="w-full bg-gray-200 rounded-full h-4">
+                    <div id="progressBar" class="accent-bg h-4 rounded-full progress-bar-fill" style="width: 0%;"></div>
+                </div>
+                <p id="progressText" class="text-xs text-center mt-1 secondary-text">0% Complete</p>
+            </div>
+        </aside>
 
-        <main id="main-content" class="flex-1 p-4 sm:p-6 lg:p-10 overflow-y-auto">
-            <div id="content-area" class="max-w-4xl mx-auto">
-            </div>
-        </main>
-    </div>
+        <main id="main-content" class="flex-1 p-4 sm:p-6 lg:p-10 overflow-y-auto">
+            <div id="content-area" class="max-w-4xl mx-auto">
+            </div>
+        </main>
+    </div>
 
-    <script>
-        const planData = [
-            {
-                day: 0,
-                title: 'Introduction: Your Journey Starts Here',
-                subtitle: 'A Moment for Yourself',
-                intro: 'Welcome! Before we dive into decluttering, let’s take a moment to set our intentions. This plan isn’t just about a clean house; it’s about creating a peaceful mind. For the next seven days, you are giving yourself the gift of clarity and calm.',
-                elements: [
-                    { type: 'mood', question: 'How are you feeling as you begin?', moods: ['Overwhelmed', 'Tired', 'Hopeful', 'Ready'] },
-                    { type: 'text', title: 'How This Plan Works', content: 'Each day, we will focus on one area of your home and mind. You’ll find simple, actionable tasks that fit into a busy schedule. This is a marathon, not a sprint. Be kind to yourself, and let\'s begin.' }
-                ]
-            },
-            {
-                day: 1,
-                title: 'Day 1: The Mindset Shift',
-                subtitle: 'Understanding Your Relationship with Clutter',
-                intro: 'Today is all about understanding the "why" behind your clutter. We\'re not moving a single item yet. Instead, we\'re preparing our minds for the change to come, making the physical work easier and more meaningful.',
-                elements: [
-                    { type: 'text', title: 'The Emotional Weight of Clutter', content: 'Recognize that clutter isn\'t just physical stuff; it carries emotional weight. It can represent guilt ("I spent money on this"), sentiment ("This was a gift"), or aspiration ("I\'ll use this someday"). Acknowledging this is the first step.' },
-                    { type: 'prompt', question: 'What is your biggest clutter trigger? Is it guilt, nostalgia, or something else? Take a moment to reflect.', placeholder: 'Type your thoughts here...' },
-                ]
-            },
-            {
-                day: 2,
-                title: 'Day 2: The Great Purge',
-                subtitle: 'A Step-by-Step Guide to Letting Go',
-                intro: 'With a clear mindset, we can now begin the physical process. Today\'s goal is to create our toolkit for decluttering. The Four-Box Method is a simple yet powerful system to make decisions quickly and efficiently.',
-                elements: [
-                    { type: 'checklist', title: 'Prepare Your Four Boxes', items: ['Find a box for items to KEEP', 'Find a box for items to DONATE/SELL', 'Find a box for items to DISCARD', 'Find a box for items to RELOCATE'] },
-                    { type: 'text', title: 'Your First Task: 15 Minutes', content: 'Set a timer for just 15 minutes. Pick one small, manageable area—a single drawer, a countertop, or a shelf. Use your four boxes and sort every item. Don\'t overthink it. When the timer rings, you\'re done for today!' }
-                ]
-            },
-            {
-                day: 3,
-                title: 'Day 3: The Heart of the Home',
-                subtitle: 'Decluttering the Kitchen',
-                intro: 'The kitchen is often the busiest, most cluttered room in the house. A clear kitchen can transform the feel of your entire home. We\'ll break it down into small, manageable zones to avoid overwhelm.',
-                elements: [
-                    { type: 'checklist', title: 'Kitchen Zone Checklist', items: ['Clear and wipe down all countertops', 'Sort through one pantry shelf', 'Check for expired items in the fridge', 'Declutter the utensil drawer', 'Tackle the mug collection'] },
-                    { type: 'prompt', question: 'What is one small change in the kitchen that would make your daily routine easier?', placeholder: 'e.g., A clear space to make coffee...' }
-                ]
-            },
-            {
-                day: 4,
-                title: 'Day 4: The Serene Sanctuary',
-                subtitle: 'Decluttering the Living Room',
-                intro: 'The living room should be a space for relaxation and connection, not a storage unit for clutter. Today, we focus on creating a peaceful environment where your family can unwind and connect.',
-                elements: [
-                    { type: 'checklist', title: 'Living Room Reset', items: ['Clear all flat surfaces (coffee table, end tables)', 'Sort through magazines and mail', 'Declutter entertainment center and media', 'Fluff pillows and fold blankets', 'Choose one decorative item to be the focal point'] },
-                ]
-            },
-            {
-                day: 5,
-                title: 'Day 5: The Playroom Paradigm',
-                subtitle: 'Decluttering Kids\' Rooms & Toys',
-                intro: 'This can be the most challenging area, but it’s also one of the most rewarding. The key is to involve your children in the process and create systems that are easy for them to maintain.',
-                elements: [
-                    { type: 'text', title: 'Involve, Don\'t Dictate', content: 'Explain to your kids that you\'re making space for new fun. Let them help choose what to keep and what to donate to other children who will love their old toys.'},
-                    { type: 'checklist', title: 'Toy Taming Tactics', items: ['Create a "Toy Rotation" box for storage', 'Implement the "One In, One Out" rule for new toys', 'Use clear bins with simple labels', 'Designate a specific "play zone"'] }
-                ]
-            },
-            {
-                day: 6,
-                title: 'Day 6: The Restful Retreat',
-                subtitle: 'Decluttering the Bedroom & Closet',
-                intro: 'Your bedroom should be a sanctuary for rest. Clutter can disrupt sleep and create a feeling of unease. Today, we create a calm and restful retreat to end your day in peace.',
-                elements: [
-                    { type: 'checklist', title: 'Bedroom & Closet Calm', items: ['Clear your nightstand of everything but essentials', 'Go through your closet and remove 5 items you haven\'t worn in a year', 'Tidy the top of your dresser', 'Make your bed with intention', 'Remove any electronics that don\'t need to be there'] },
-                ]
-            },
-            {
-                day: 7,
-                title: 'Day 7: Your Mental Reset',
-                subtitle: 'Finding Peace That Lasts',
-                intro: 'You did it! Take a moment to look around your home and acknowledge the progress you\'ve made. This final day is about reflection and creating simple habits to maintain the calm you\'ve worked so hard to create.',
-                elements: [
-                    { type: 'mood', question: 'How are you feeling at the end of this week?', moods: ['Peaceful', 'Accomplished', 'Lighter', 'Inspired'] },
-                    { type: 'text', title: 'Connect with Us on YouTube', content: 'Your journey doesn’t have to end here. Join our YouTube channel for more tips, videos, and inspiration to help you maintain a peaceful and organized home. We can\'t wait to connect with you there!' },
-                    { type: 'button', text: 'Visit Our YouTube Channel', url: 'https://www.youtube.com/@iwannaknowYT' }
-                ]
-            }
-        ];
+    <script>
+        const planData = [
+            {
+                day: 0,
+                title: 'Introduction: Your Journey Starts Here',
+                subtitle: 'A Moment for Yourself',
+                intro: 'Welcome! Before we dive into decluttering, let’s take a moment to set our intentions. This plan isn’t just about a clean house; it’s about creating a peaceful mind. For the next seven days, you are giving yourself the gift of clarity and calm.',
+                elements: [
+                    // UPDATED THE IMAGE URL TO THE NEW GITHUB LINK
+                    { type: 'image', url: 'https://raw.githubusercontent.com/morethanmysoul/mental-reset-app/refs/heads/main/Cover%20page%20image.png' },
+                    { type: 'mood', question: 'How are you feeling as you begin?', moods: ['Overwhelmed', 'Tired', 'Hopeful', 'Ready'] },
+                    { type: 'text', title: 'How This Plan Works', content: 'Each day, we will focus on one area of your home and mind. You’ll find simple, actionable tasks that fit into a busy schedule. This is a marathon, not a sprint. Be kind to yourself, and let\'s begin.' }
+                ]
+            },
+            {
+                day: 1,
+                title: 'Day 1: The Mindset Shift',
+                subtitle: 'Understanding Your Relationship with Clutter',
+                intro: 'Today is all about understanding the "why" behind your clutter. We\'re not moving a single item yet. Instead, we\'re preparing our minds for the change to come, making the physical work easier and more meaningful.',
+                elements: [
+                    { type: 'text', title: 'The Emotional Weight of Clutter', content: 'Recognize that clutter isn\'t just physical stuff; it carries emotional weight. It can represent guilt ("I spent money on this"), sentiment ("This was a gift"), or aspiration ("I\'ll use this someday"). Acknowledging this is the first step.' },
+                    { type: 'prompt', question: 'What is your biggest clutter trigger? Is it guilt, nostalgia, or something else? Take a moment to reflect.', placeholder: 'Type your thoughts here...' },
+                ]
+            },
+            {
+                day: 2,
+                title: 'Day 2: The Great Purge',
+                subtitle: 'A Step-by-Step Guide to Letting Go',
+                intro: 'With a clear mindset, we can now begin the physical process. Today\'s goal is to create our toolkit for decluttering. The Four-Box Method is a simple yet powerful system to make decisions quickly and efficiently.',
+                elements: [
+                    { type: 'checklist', title: 'Prepare Your Four Boxes', items: ['Find a box for items to KEEP', 'Find a box for items to DONATE/SELL', 'Find a box for items to DISCARD', 'Find a box for items to RELOCATE'] },
+                    { type: 'text', title: 'Your First Task: 15 Minutes', content: 'Set a timer for just 15 minutes. Pick one small, manageable area—a single drawer, a countertop, or a shelf. Use your four boxes and sort every item. Don\'t overthink it. When the timer rings, you\'re done for today!' }
+                ]
+            },
+            {
+                day: 3,
+                title: 'Day 3: The Heart of the Home',
+                subtitle: 'Decluttering the Kitchen',
+                intro: 'The kitchen is often the busiest, most cluttered room in the house. A clear kitchen can transform the feel of your entire home. We\'ll break it down into small, manageable zones to avoid overwhelm.',
+                elements: [
+                    { type: 'checklist', title: 'Kitchen Zone Checklist', items: ['Clear and wipe down all countertops', 'Sort through one pantry shelf', 'Check for expired items in the fridge', 'Declutter the utensil drawer', 'Tackle the mug collection'] },
+                    { type: 'prompt', question: 'What is one small change in the kitchen that would make your daily routine easier?', placeholder: 'e.g., A clear space to make coffee...' }
+                ]
+            },
+            {
+                day: 4,
+                title: 'Day 4: The Serene Sanctuary',
+                subtitle: 'Decluttering the Living Room',
+                intro: 'The living room should be a space for relaxation and connection, not a storage unit for clutter. Today, we focus on creating a peaceful environment where your family can unwind and connect.',
+                elements: [
+                    { type: 'checklist', title: 'Living Room Reset', items: ['Clear all flat surfaces (coffee table, end tables)', 'Sort through magazines and mail', 'Declutter entertainment center and media', 'Fluff pillows and fold blankets', 'Choose one decorative item to be the focal point'] },
+                ]
+            },
+            {
+                day: 5,
+                title: 'Day 5: The Playroom Paradigm',
+                subtitle: 'Decluttering Kids\' Rooms & Toys',
+                intro: 'This can be the most challenging area, but it’s also one of the most rewarding. The key is to involve your children in the process and create systems that are easy for them to maintain.',
+                elements: [
+                    { type: 'text', title: 'Involve, Don\'t Dictate', content: 'Explain to your kids that you\'re making space for new fun. Let them help choose what to keep and what to donate to other children who will love their old toys.'},
+                    { type: 'checklist', title: 'Toy Taming Tactics', items: ['Create a "Toy Rotation" box for storage', 'Implement the "One In, One Out" rule for new toys', 'Use clear bins with simple labels', 'Designate a specific "play zone"'] }
+                ]
+            },
+            {
+                day: 6,
+                title: 'Day 6: The Restful Retreat',
+                subtitle: 'Decluttering the Bedroom & Closet',
+                intro: 'Your bedroom should be a sanctuary for rest. Clutter can disrupt sleep and create a feeling of unease. Today, we create a calm and restful retreat to end your day in peace.',
+                elements: [
+                    { type: 'checklist', title: 'Bedroom & Closet Calm', items: ['Clear your nightstand of everything but essentials', 'Go through your closet and remove 5 items you haven\'t worn in a year', 'Tidy the top of your dresser', 'Make your bed with intention', 'Remove any electronics that don\'t need to be there'] },
+                ]
+            },
+            {
+                day: 7,
+                title: 'Day 7: Your Mental Reset',
+                subtitle: 'Finding Peace That Lasts',
+                intro: 'You did it! Take a moment to look around your home and acknowledge the progress you\'ve made. This final day is about reflection and creating simple habits to maintain the calm you\'ve worked so hard to create.',
+                elements: [
+                    { type: 'mood', question: 'How are you feeling at the end of this week?', moods: ['Peaceful', 'Accomplished', 'Lighter', 'Inspired'] },
+                    { type: 'text', title: 'Connect with Us on YouTube', content: 'Your journey doesn’t have to end here. Join our YouTube channel for more tips, videos, and inspiration to help you maintain a peaceful and organized home. We can\'t wait to connect with you there!' },
+                    { type: 'button', text: 'Visit Our YouTube Channel', url: 'https://www.youtube.com/@iwannaknowYT' }
+                ]
+            }
+        ];
 
-        let state = {
-            currentDay: 0,
-            progress: {}
-        };
+        let state = {
+            currentDay: 0,
+            progress: {}
+        };
 
-        const dayNavigation = document.getElementById('day-navigation');
-        const contentArea = document.getElementById('content-area');
-        const progressBar = document.getElementById('progressBar');
-        const progressText = document.getElementById('progressText');
-        const thankYouModal = document.getElementById('thankYouModal');
-        const startPlanBtn = document.getElementById('startPlanBtn');
-        const sidebar = document.getElementById('sidebar');
+        const dayNavigation = document.getElementById('day-navigation');
+        const contentArea = document.getElementById('content-area');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const thankYouModal = document.getElementById('thankYouModal');
+        const startPlanBtn = document.getElementById('startPlanBtn');
+        const sidebar = document.getElementById('sidebar');
 
-        function initializeProgress() {
-            planData.forEach((day, index) => {
-                const checklists = day.elements.filter(el => el.type === 'checklist');
-                if (checklists.length > 0) {
-                    state.progress[index] = checklists.flatMap(c => c.items).map(() => false);
-                }
-            });
-        }
+        function initializeProgress() {
+            planData.forEach((day, index) => {
+                const checklists = day.elements.filter(el => el.type === 'checklist');
+                if (checklists.length > 0) {
+                    state.progress[index] = checklists.flatMap(c => c.items).map(() => false);
+                }
+            });
+        }
 
-        function updateProgress() {
-            let totalTasks = 0;
-            let completedTasks = 0;
-            Object.values(state.progress).forEach(dayTasks => {
-                totalTasks += dayTasks.length;
-                completedTasks += dayTasks.filter(Boolean).length;
-            });
-            const percentage = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
-            progressBar.style.width = `${percentage}%`;
-            progressText.textContent = `${percentage}% Complete`;
-        }
+        function updateProgress() {
+            let totalTasks = 0;
+            let completedTasks = 0;
+            Object.values(state.progress).forEach(dayTasks => {
+                totalTasks += dayTasks.length;
+                completedTasks += dayTasks.filter(Boolean).length;
+            });
+            const percentage = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
+            progressBar.style.width = `${percentage}%`;
+            progressText.textContent = `${percentage}% Complete`;
+        }
 
-        function renderContent(dayIndex) {
-            state.currentDay = dayIndex;
-            const day = planData.find(d => d.day === dayIndex);
-            if (!day) return;
+        function renderContent(dayIndex) {
+            state.currentDay = dayIndex;
+            const day = planData.find(d => d.day === dayIndex);
+            if (!day) return;
 
-            contentArea.innerHTML = '';
+            contentArea.innerHTML = '';
 
-            let contentHTML = `
-                <div class="bg-white p-8 rounded-2xl shadow-lg animate-fade-in">
-                    <h1 class="text-4xl font-bold primary-text mb-2">${day.title}</h1>
-                    <p class="text-lg secondary-text mb-8">${day.subtitle}</p>
-                    <p class="mb-8">${day.intro}</p>
-                    <hr class="mb-8">
-            `;
+            let contentHTML = `
+                <div class="bg-white p-8 rounded-2xl shadow-lg animate-fade-in">
+                    <h1 class="text-4xl font-bold primary-text mb-2">${day.title}</h1>
+                    <p class="text-lg secondary-text mb-8">${day.subtitle}</p>
+                    <p class="mb-8">${day.intro}</p>
+                    <hr class="mb-8">
+            `;
 
-            day.elements.forEach((el, elIndex) => {
-                switch (el.type) {
-                    case 'mood':
-                        contentHTML += `
-                            <div class="mb-8">
-                                <h3 class="text-xl font-semibold mb-4">${el.question}</h3>
-                                <div class="mood-selector flex items-center justify-center space-x-4">
-                                    ${el.moods.map(mood => `<div class="mood cursor-pointer text-center"><span class="text-4xl">${getEmojiForMood(mood)}</span><p class="text-sm mt-1">${mood}</p></div>`).join('')}
-                                </div>
-                            </div>
-                        `;
-                        break;
-                    case 'text':
-                        contentHTML += `
-                            <div class="mb-8">
-                                <h3 class="text-xl font-semibold mb-4">${el.title}</h3>
-                                <p class="secondary-text">${el.content}</p>
-                            </div>
-                        `;
-                        break;
-                    case 'prompt':
-                        contentHTML += `
-                             <div class="mb-8">
-                                <h3 class="text-xl font-semibold mb-4">${el.question}</h3>
-                                <textarea class="w-full p-4 border rounded-lg focus:ring-2 focus:ring-opacity-50 focus:ring-peach-300 focus:border-peach-300 transition" rows="4" placeholder="${el.placeholder}"></textarea>
-                            </div>
-                        `;
-                        break;
-                    case 'checklist':
-                        const dayProgress = state.progress[dayIndex] || [];
-                        contentHTML += `
-                            <div class="mb-8">
-                                <h3 class="text-xl font-semibold mb-4">${el.title}</h3>
-                                <div class="space-y-3">
-                                    ${el.items.map((item, itemIndex) => `
-                                        <label class="checklist-item flex items-center p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 ${dayProgress[itemIndex] ? 'completed' : ''}">
-                                            <input type="checkbox" class="h-5 w-5 rounded-md border-gray-300 text-peach-500 focus:ring-peach-200" data-day="${dayIndex}" data-item="${itemIndex}" ${dayProgress[itemIndex] ? 'checked' : ''}>
-                                            <span class="ml-4 text-md">${item}</span>
-                                        </label>
-                                    `).join('')}
-                                </div>
-                            </div>
-                        `;
-                        break;
-                    case 'button':
-                        contentHTML += `
-                            <div class="text-center mt-8">
-                                <a href="${el.url}" target="_blank" class="inline-block accent-bg accent-text font-bold py-3 px-8 rounded-full text-lg accent-hover shadow-lg">
-                                    ${el.text}
-                                </a>
-                            </div>
-                        `;
-                        break;
-                }
-            });
+            day.elements.forEach((el, elIndex) => {
+                switch (el.type) {
+                    case 'image':
+                        contentHTML += `
+                            <div class="cover-image-container">
+                                <img src="${el.url}" alt="Cover Image" class="w-full h-auto block">
+                            </div>
+                        `;
+                        break;
+                    case 'mood':
+                        contentHTML += `
+                            <div class="mb-8">
+                                <h3 class="text-xl font-semibold mb-4">${el.question}</h3>
+                                <div class="mood-selector flex items-center justify-center space-x-4">
+                                    ${el.moods.map(mood => `<div class="mood cursor-pointer text-center"><span class="text-4xl">${getEmojiForMood(mood)}</span><p class="text-sm mt-1">${mood}</p></div>`).join('')}
+                                </div>
+                            </div>
+                        `;
+                        break;
+                    case 'text':
+                        contentHTML += `
+                            <div class="mb-8">
+                                <h3 class="text-xl font-semibold mb-4">${el.title}</h3>
+                                <p class="secondary-text">${el.content}</p>
+                            </div>
+                        `;
+                        break;
+                    case 'prompt':
+                        contentHTML += `
+                             <div class="mb-8">
+                                 <h3 class="text-xl font-semibold mb-4">${el.question}</h3>
+                                 <textarea class="w-full p-4 border rounded-lg focus:ring-2 focus:ring-opacity-50 focus:ring-peach-300 focus:border-peach-300 transition" rows="4" placeholder="${el.placeholder}"></textarea>
+                             </div>
+                        `;
+                        break;
+                    case 'checklist':
+                        const dayProgress = state.progress[dayIndex] || [];
+                        contentHTML += `
+                            <div class="mb-8">
+                                <h3 class="text-xl font-semibold mb-4">${el.title}</h3>
+                                <div class="space-y-3">
+                                    ${el.items.map((item, itemIndex) => `
+                                        <label class="checklist-item flex items-center p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 ${dayProgress[itemIndex] ? 'completed' : ''}">
+                                            <input type="checkbox" class="h-5 w-5 rounded-md border-gray-300 text-peach-500 focus:ring-peach-200" data-day="${dayIndex}" data-item="${itemIndex}" ${dayProgress[itemIndex] ? 'checked' : ''}>
+                                            <span class="ml-4 text-md">${item}</span>
+                                        </label>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        `;
+                        break;
+                    case 'button':
+                        contentHTML += `
+                            <div class="text-center mt-8">
+                                <a href="${el.url}" target="_blank" class="inline-block accent-bg accent-text font-bold py-3 px-8 rounded-full text-lg accent-hover shadow-lg">
+                                    ${el.text}
+                                </a>
+                            </div>
+                        `;
+                        break;
+                }
+            });
 
-            contentHTML += `</div>`;
-            contentArea.innerHTML = contentHTML;
-            updateNavLinks();
-            addEventListeners();
-        }
-        
-        function getEmojiForMood(mood) {
-            switch(mood.toLowerCase()) {
-                case 'overwhelmed': return '🤯';
-                case 'tired': return '😴';
-                case 'hopeful': return '😊';
-                case 'ready': return '💪';
-                case 'peaceful': return '😌';
-                case 'accomplished': return '🎉';
-                case 'lighter': return '🎐';
-                case 'inspired': return '💡';
-                default: return '🙂';
-            }
-        }
+            contentHTML += `</div>`;
+            contentArea.innerHTML = contentHTML;
+            updateNavLinks();
+            addEventListeners();
+        }
+        
+        function getEmojiForMood(mood) {
+            switch(mood.toLowerCase()) {
+                case 'overwhelmed': return '🤯';
+                case 'tired': return '😴';
+                case 'hopeful': return '😊';
+                case 'ready': return '💪';
+                case 'peaceful': return '😌';
+                case 'accomplished': return '🎉';
+                case 'lighter': return '🎐';
+                case 'inspired': return '💡';
+                default: return '🙂';
+            }
+        }
 
-        function updateNavLinks() {
-            const links = document.querySelectorAll('.nav-link');
-            links.forEach(link => {
-                link.classList.remove('active');
-                if (parseInt(link.dataset.day) === state.currentDay) {
-                    link.classList.add('active');
-                }
-            });
-        }
+        function updateNavLinks() {
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                link.classList.remove('active');
+                if (parseInt(link.dataset.day) === state.currentDay) {
+                    link.classList.add('active');
+                }
+            });
+        }
 
-        function addEventListeners() {
-            const checklists = contentArea.querySelectorAll('input[type="checkbox"]');
-            checklists.forEach(checkbox => {
-                checkbox.addEventListener('change', (e) => {
-                    const dayIndex = parseInt(e.target.dataset.day);
-                    const itemIndex = parseInt(e.target.dataset.item);
-                    state.progress[dayIndex][itemIndex] = e.target.checked;
-                    e.target.closest('label').classList.toggle('completed', e.target.checked);
-                    updateProgress();
-                });
-            });
+        function addEventListeners() {
+            const checklists = contentArea.querySelectorAll('input[type="checkbox"]');
+            checklists.forEach(checkbox => {
+                checkbox.addEventListener('change', (e) => {
+                    const dayIndex = parseInt(e.target.dataset.day);
+                    const itemIndex = parseInt(e.target.dataset.item);
+                    state.progress[dayIndex][itemIndex] = e.target.checked;
+                    e.target.closest('label').classList.toggle('completed', e.target.checked);
+                    updateProgress();
+                });
+            });
 
-            const moods = contentArea.querySelectorAll('.mood');
-            moods.forEach(mood => {
-                mood.addEventListener('click', (e) => {
-                    moods.forEach(m => m.classList.remove('selected'));
-                    e.currentTarget.classList.add('selected');
-                });
-            });
-        }
+            const moods = contentArea.querySelectorAll('.mood');
+            moods.forEach(mood => {
+                mood.addEventListener('click', (e) => {
+                    moods.forEach(m => m.classList.remove('selected'));
+                    e.currentTarget.classList.add('selected');
+                });
+            });
+        }
 
-        function renderNavigation() {
-            dayNavigation.innerHTML = planData.map(day => `
-                <a href="#" class="nav-link block p-4 font-semibold secondary-text rounded-lg" data-day="${day.day}">${day.day === 0 ? 'Introduction' : `Day ${day.day}`}</a>
-            `).join('');
+        function renderNavigation() {
+            dayNavigation.innerHTML = planData.map(day => `
+                <a href="#" class="nav-link block p-4 font-semibold secondary-text rounded-lg" data-day="${day.day}">${day.day === 0 ? 'Introduction' : `Day ${day.day}`}</a>
+            `).join('');
 
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    renderContent(parseInt(e.target.dataset.day));
-                });
-            });
-        }
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    renderContent(parseInt(e.target.dataset.day));
+                });
+            });
+        }
 
-        window.addEventListener('DOMContentLoaded', () => {
-            const modalBox = thankYouModal.querySelector('div');
-            setTimeout(() => {
-                modalBox.style.transform = 'scale(1)';
-                modalBox.style.opacity = '1';
-            }, 100);
+        window.addEventListener('DOMContentLoaded', () => {
+            const modalBox = thankYouModal.querySelector('div');
+            setTimeout(() => {
+                modalBox.style.transform = 'scale(1)';
+                modalBox.style.opacity = '1';
+            }, 100);
 
-            startPlanBtn.addEventListener('click', () => {
-                thankYouModal.style.transition = 'opacity 0.3s ease';
-                thankYouModal.style.opacity = '0';
-                setTimeout(() => thankYouModal.style.display = 'none', 300);
-                if (window.innerWidth >= 768) {
-                   sidebar.classList.remove('hidden');
-                }
-            });
+            startPlanBtn.addEventListener('click', () => {
+                thankYouModal.style.transition = 'opacity 0.3s ease';
+                thankYouModal.style.opacity = '0';
+                setTimeout(() => thankYouModal.style.display = 'none', 300);
+                if (window.innerWidth >= 768) {
+                   sidebar.classList.remove('hidden');
+                }
+            });
 
-            initializeProgress();
-            renderNavigation();
-            renderContent(0);
-            updateProgress();
-        });
-    </script>
+            initializeProgress();
+            renderNavigation();
+            renderContent(0);
+            updateProgress();
+        });
+    </script>
 </body>
 </html>
